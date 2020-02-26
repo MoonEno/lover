@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="floor">
+
+    <!-- 사용자 번호 조회 -->
+    <insert id="insertFloor" parameterType="kr.ih.lover.biz.vo.FloorVO">
+        INSERT INTO FLOOR 
+        (ID, STATE, START_STATE, SUB_YN, STATE_IMG) VALUES (#{id}, #{state}, #{startState}, #{subYn}, #{stateImg})
+    </insert>
+    
+    <delete id="deleteFloor" parameterType="java.lang.String">
+        DELETE FROM FLOOR 
+         WHERE SEQ = #{param} 
+    </delete>
+    
+    <select id="selectAllFloor" parameterType="java.lang.String" resultType="kr.ih.lover.biz.vo.FloorVO">
+        SELECT SEQ as seq,
+               STATE as state,
+               START_STATE as startState,
+               SUB_YN as subYn
+          FROM FLOOR
+         WHERE ID = #{param}
+         ORDER BY STATE DESC
+    </select>
+    
+    <select id="selectDetailFloor" parameterType="java.lang.String" resultType="kr.ih.lover.biz.vo.FloorVO">
+       SELECT SEQ as seq,
+              STATE as state,
+              START_STATE as startState,
+              SUB_YN as subYn,
+              STATE_IMG as stateImg
+         FROM FLOOR
+        WHERE SEQ = #{param}
+    </select>
+    
+</mapper>
